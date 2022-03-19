@@ -11,6 +11,8 @@ var camera
 var progress
 var inventory
 var objective
+var angela
+var medkit
 onready var sound = get_tree().root.get_node("Root/Player/Collect")
 
 func _ready():
@@ -20,6 +22,8 @@ func _ready():
 	progress = get_tree().root.get_node("Root/Player/Progress")
 	inventory = get_tree().root.get_node("Root/HUD/Inventory")
 	objective = get_tree().root.get_node("Root/HUD/Objective")
+	angela = get_tree().root.get_node("Root/Angela")
+	medkit = get_tree().root.get_node("Root/Medkit")
 	
 func talk(answer = ""):
 	# Set dialoguePopup npc to You
@@ -59,6 +63,8 @@ func talk(answer = ""):
 					# Update dialogue tree state
 					dialogue_state = 0
 					quest_status = QuestStatus.STARTED
+					medkit.monitoring = true
+					medkit.monitorable = true
 					objective.text = "Objective: Find a medkit in the room above"
 					# Close dialogue popup
 					dialoguePopup.close()
@@ -119,6 +125,7 @@ func talk(answer = ""):
 					dialoguePopup.dialogue = "Thanks for your help! Here's a keycard for the Control Center. I think you might need it."
 					dialoguePopup.answers = "[A] Bye"
 					dialoguePopup.open()
+					angela.position = Vector2(1168,264)
 					objective.text = "Objective: Find a way to the exit"
 					inventory.animation = "one_card"
 					sound.play()
@@ -199,12 +206,11 @@ func talk0(answer = ""):
 	dialoguePopup.npc = self
 	dialoguePopup.npc_name = "You"
 	
-	dialoguePopup.dialogue = "What is going on? Is it a power failure? I should go out and check."
+	dialoguePopup.dialogue = "What is going on? Is it a power failure? I think the sound is coming from one of the rooms on my right."
 	dialoguePopup.answers = "Press Enter to Continue"
 	dialoguePopup.open()
-
 
 func _on_Timer_timeout():
 	self.talk0()
 	player.speed = 75
-	objective.text = "Objective: Go into any of the rooms to investigate"
+	objective.text = "Objective: Go into the room on your bottom right to investigate"

@@ -12,6 +12,7 @@ var progress
 var inventory
 var objective
 var jeff
+var keycard
 
 func _ready():
 	dialoguePopup = get_tree().root.get_node("Root/HUD/DialoguePopup")
@@ -21,6 +22,7 @@ func _ready():
 	inventory = get_tree().root.get_node("Root/HUD/Inventory")
 	objective = get_tree().root.get_node("Root/HUD/Objective")
 	jeff = get_tree().root.get_node("Root/Jeff")
+	keycard = get_tree().root.get_node("Root/Keycard")
 
 func talk(answer = ""):
 	# Set dialoguePopup npc to You
@@ -116,6 +118,8 @@ func talk(answer = ""):
 					# Update dialogue tree state
 					dialogue_state = 0
 					quest_status = QuestStatus.STARTED
+					keycard.monitoring = true
+					keycard.monitorable = true
 					objective.text = "Objective: Find the keycard"
 					# Close dialogue popup
 					dialoguePopup.close()

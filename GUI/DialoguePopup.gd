@@ -5,6 +5,8 @@ var dialogue setget dialogue_set
 var answers setget answers_set
 var npc
 onready var sound = get_tree().root.get_node("Root/Player/Dialogue")
+onready var player = get_tree().root.get_node("Root/Player")
+
 
 func name_set(new_value):
 	npc_name = new_value
@@ -50,7 +52,7 @@ func _input(event):
 		elif event.scancode == KEY_B:
 			set_process_input(false)
 			npc.talk("B")
-		elif event.scancode == KEY_ENTER:
+		elif event.scancode == KEY_ENTER and player.position.x < 360:
 			set_process_input(true)
 			var inventory = get_tree().root.get_node("Root/HUD/Inventory")
 			var objective = get_tree().root.get_node("Root/HUD/Objective")

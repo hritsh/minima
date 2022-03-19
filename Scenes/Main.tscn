@@ -83,16 +83,6 @@ height = 12.0
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 25 ) ],
-"loop": true,
-"name": "empty",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "medkit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 27 ) ],
 "loop": true,
 "name": "two_cards",
@@ -101,6 +91,16 @@ animations = [ {
 "frames": [ ExtResource( 26 ) ],
 "loop": true,
 "name": "one_card",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "medkit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "empty",
 "speed": 5.0
 } ]
 
@@ -141,7 +141,6 @@ script = ExtResource( 23 )
 position = Vector2( 320, 180 )
 z_index = 3
 script = ExtResource( 6 )
-speed = 200
 
 [node name="Sprite" type="AnimatedSprite" parent="Player"]
 frames = SubResource( 1 )
@@ -308,10 +307,14 @@ z_index = 2
 position = Vector2( 689, -84 )
 scale = Vector2( 1, 1 )
 z_index = 2
+monitoring = false
+monitorable = false
 
 [node name="Keycard" parent="." instance=ExtResource( 31 )]
 position = Vector2( 978, -142 )
 z_index = 2
+monitoring = false
+monitorable = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
@@ -319,7 +322,7 @@ one_shot = true
 autostart = true
 
 [node name="Angela" parent="." instance=ExtResource( 32 )]
-position = Vector2( 1168, 264 )
+position = Vector2( 1571, 514 )
 z_index = 2
 
 [node name="Exit" type="Area2D" parent="."]
