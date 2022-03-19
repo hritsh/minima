@@ -46,16 +46,18 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _input(event):
 	if event is InputEventKey:
-		if event.scancode == KEY_A:
-			set_process_input(false)
-			npc.talk("A")
-		elif event.scancode == KEY_B:
-			set_process_input(false)
-			npc.talk("B")
-		elif event.scancode == KEY_ENTER and player.position.x < 360:
-			set_process_input(true)
-			var inventory = get_tree().root.get_node("Root/HUD/Inventory")
-			var objective = get_tree().root.get_node("Root/HUD/Objective")
-			inventory.visible = true
-			objective.visible = true
-			close()
+		if player.position.x > 360:
+			if event.scancode == KEY_A:
+				set_process_input(false)
+				npc.talk("A")
+			elif event.scancode == KEY_B:
+				set_process_input(false)
+				npc.talk("B")
+		else:
+			if event.scancode == KEY_ENTER:
+				set_process_input(true)
+				var inventory = get_tree().root.get_node("Root/HUD/Inventory")
+				var objective = get_tree().root.get_node("Root/HUD/Objective")
+				inventory.visible = true
+				objective.visible = true
+				close()
