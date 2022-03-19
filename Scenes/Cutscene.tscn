@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Cutscenes/cutscene.webm" type="VideoStream" id=1]
+[ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=2]
+
+[node name="CutsceneNode" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_right = 640.0
+margin_bottom = 360.0
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 88.0
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 517.0
+margin_top = 4.0
+margin_right = 636.0
+margin_bottom = 18.0
+text = "Press Enter to Skip"
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
